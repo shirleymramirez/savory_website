@@ -11,6 +11,7 @@ export interface FoodProduct {
   description: string;
   categories: string[];
   active?: boolean;
+  inventory?: number;
   image: FoodImage;
 }
 

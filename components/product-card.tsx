@@ -39,7 +39,14 @@ export function ProductCard({ food }: ProductCardProps) {
         <p className="mt-3 line-clamp-3 flex-1 text-sm leading-6 text-[#62584B]">
           {food.description}
         </p>
-        <AddToCartButton food={food} />
+        {food.inventory === 0 ? (
+          <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-[#B02A37]">
+            Out of Stock
+          </p>
+        ) : null}
+        <div className="mt-auto">
+          <AddToCartButton food={food} />
+        </div>
       </div>
     </article>
   );

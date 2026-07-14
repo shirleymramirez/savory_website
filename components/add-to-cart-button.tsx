@@ -16,6 +16,22 @@ export function AddToCartButton({ food, size = "card" }: AddToCartButtonProps) {
   const controlClassName = isDetail
     ? "mt-9 h-12 w-full sm:w-fit"
     : "mt-5 h-10 w-full";
+  const isOutOfStock = food.inventory === 0;
+
+  if (isOutOfStock && quantity === 0) {
+    return (
+      <button
+        type="button"
+        disabled
+        aria-label={`${food.title} is out of stock`}
+        className={`${controlClassName} inline-flex items-center justify-center rounded-md bg-[#D9C7A7] px-4 text-sm font-semibold text-[#2B241E] opacity-50 cursor-not-allowed ${
+          isDetail ? "px-6 text-base" : ""
+        }`}
+      >
+        Out of Stock
+      </button>
+    );
+  }
 
   if (quantity === 0) {
     return (
@@ -27,11 +43,6 @@ export function AddToCartButton({ food, size = "card" }: AddToCartButtonProps) {
         }`}
       >
         <ShoppingCart className="h-5 w-5" aria-hidden="true" />
-        {/* {isDetail ? (
-          <ShoppingCart className="h-5 w-5" aria-hidden="true" />
-        ) : (
-          <Plus className="h-4 w-4" aria-hidden="true" />
-        )} */}
         Add to Cart
       </button>
     );
